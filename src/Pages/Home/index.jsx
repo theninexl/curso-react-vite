@@ -9,24 +9,15 @@ function Home() {
 
   const renderView = () => {
     //si hay busqueda la devuelves, si no, tiras el listado de productos que se hace con Fetch
-    if (context.searchByTitle?.length > 0) {
-      if (context.filteredItems?.length > 0) {
-        return (
-          context.filteredItems?.map(item => (
-            <Card key={item.id} data={item}/>
-          ))
-        )
-      } else {
-        return (
-          <div>We could not find your product. Try again.</div>
-        )
-      }
-    } else {
+    if (context.filteredItems?.length > 0) {
       return (
-        //cuando le pasas la función a map si en vez de usar {} usas () en el desarrollo equivale a meterle un return
-        context.items?.map(item => (
+        context.filteredItems?.map(item => (
           <Card key={item.id} data={item}/>
         ))
+      )
+     } else {
+      return (
+        <div>We could not find your product. Try again.</div>
       )
     }
   }
